@@ -39,7 +39,11 @@ export class Player extends PlayerRPG {
     const data = client.players.get(user.id);
 
     if (!data) {
-      throw new PlayerNotFoundErr("character has not been created");
+      const { prefix } = client.commandManager;
+
+      throw new PlayerNotFoundErr(
+        `Character has not been created. Please use \`${prefix}create\``
+      );
     }
 
     const player = new Player(user, data.imageUrl);
