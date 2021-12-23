@@ -10,6 +10,7 @@ export default class extends Command {
   name = "duel";
   description = "duel with other person with bet";
   maxCount = 5;
+  disable = true;
   cooldownTime = 1; // hours
 
   async exec(msg: Message, args: string[]) {
