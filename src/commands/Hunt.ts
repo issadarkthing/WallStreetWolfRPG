@@ -5,6 +5,7 @@ import { Battle } from "discordjs-rpg";
 import { Alien } from "../structure/Monster";
 import { bold, REPEAT, CROSSED_SWORD, currency } from "../utils";
 import { ButtonHandler } from "../structure/ButtonHandler";
+import { oneLine } from "common-tags";
 
 class SearchMonster extends ButtonHandler {
   player: Player;
@@ -53,8 +54,17 @@ export default class extends Command {
         player.coins += monster.drop;
         player.win++;
 
-        msg.channel.send(`${player.name} has earned ${bold(monster.drop)} ${currency}!`);
-        msg.channel.send(`${player.name} has earned ${bold(monster.xpDrop)} xp!`);
+        const embed = new MessageEmbed()
+          .setColor("DARK_GOLD")
+          .setImage("https://cdn.discordapp.com/attachments/921236230220447835/923459652451205130/Asset_3_2x1.png")
+          .setTitle("Reward")
+          .setDescription(
+            oneLine`${player.name} has earned ${bold(monster.drop)} ${currency}
+            and ${bold(monster.xpDrop)} xp!`
+          );
+
+
+        msg.channel.send({ embeds: [embed] });
 
         if (currLevel !== player.level) {
           msg.channel.send(`${player.name} is now on level ${bold(player.level)}!`);
