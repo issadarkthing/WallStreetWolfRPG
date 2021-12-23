@@ -27,7 +27,7 @@ export default class extends Command {
     let description = "";
 
     description += `Use \`${prefix}profile\` to checkout your profile\n`;
-    description += `Use \`${prefix}hunt\` to start hunting humans!\n`;
+    description += `Use \`${prefix}hunt\` to start hunting opponents!\n`;
     description += `Use \`${prefix}help\` to check out other commands!`;
 
     const embed = new MessageEmbed()
