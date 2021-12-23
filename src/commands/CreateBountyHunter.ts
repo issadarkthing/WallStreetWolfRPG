@@ -1,5 +1,5 @@
 import { Command } from "@jiman24/commandment";
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import { client } from "../index";
 import { bold } from "../utils";
 import { Player } from "../structure/Player";
@@ -23,10 +23,21 @@ export default class extends Command {
     const { prefix } = client.commandManager;
 
     msg.channel.send(`${bold(player.name)} has been created successfully!`);
-    msg.channel.send(
-      `Use \`${prefix}profile\` to checkout your profile`
-    )
-    msg.channel.send(`Use \`${prefix}hunt\` to start hunting humans!`);
-    msg.channel.send(`Use \`${prefix}help\` to check out other commands!`);
+
+    let description = "";
+
+    description += `Use \`${prefix}profile\` to checkout your profile\n`;
+    description += `Use \`${prefix}hunt\` to start hunting humans!\n`;
+    description += `Use \`${prefix}help\` to check out other commands!`;
+
+    const embed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setImage("https://cdn.discordapp.com/attachments/921236230220447835/923420422224105512/logo.png")
+      .setThumbnail(player.imageUrl!)
+      .setTitle("Welcome to WallStreetWolfRPG")
+      .addField("---", description);
+
+    msg.channel.send({ embeds: [embed] });
+
   }
 }
