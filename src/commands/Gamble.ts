@@ -6,9 +6,9 @@ import { random, validateAmount, validateNumber } from "../utils";
 export default class extends Command {
   name = "gamble";
   description = "slot machine game";
-  throttle = 60 * 1000;
   symbols = ["🔵", "🔴", "⚪", "🟠"];
   aliases = ["s", "g"];
+  // throttle = 60 * 1000;
 
   private allEqual(arr: string[]) {
     return arr.every(x => x === arr[0]);
