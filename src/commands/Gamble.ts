@@ -1,5 +1,5 @@
 import { Command } from "@jiman24/commandment";
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import { Player } from "../structure/Player";
 import { random, validateAmount, validateNumber } from "../utils";
 
@@ -75,16 +75,26 @@ export default class extends Command {
 
     player.coins -= amount;
 
+    const embed = new MessageEmbed();
+
     if (multiplier === 1) {
-      msg.channel.send(`You lost **${amount}** coins!`);
+
+      embed
+        .setColor("GREEN")
+        .setImage("https://cdn.discordapp.com/attachments/921236230220447835/923464928835285002/3.png")
+        .setDescription(`You lost **${amount}** coins!`);
 
     } else {
       const winAmount = multiplier * amount;
       player.coins += winAmount;
-      msg.channel.send(`You won **(x${multiplier}) ${winAmount}** coins!`);
 
+      embed
+        .setColor("RED")
+        .setImage("https://cdn.discordapp.com/attachments/921236230220447835/923464929078571018/1_copy.png")
+        .setDescription(`You won **(x${multiplier}) ${winAmount}** coins!`);
     }
 
+    msg.channel.send({ embeds: [embed] });
     player.save();
   }
 }
