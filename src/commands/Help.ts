@@ -7,6 +7,8 @@ export default class Help extends Command {
   aliases = ["h"];
   description = "show all commands and it's description";
 
+  private banner = "https://cdn.discordapp.com/attachments/921236230220447835/923416890246848582/Banner_new.png";
+
   async exec(msg: Message) {
     const commands = client.commandManager.commands.values();
 
@@ -30,6 +32,7 @@ export default class Help extends Command {
     }
 
     const embed = new MessageEmbed()
+      .setImage(this.banner)
       .setColor("RANDOM")
       .setTitle("Help")
       .setDescription(helpText)
